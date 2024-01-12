@@ -1,0 +1,150 @@
+/* @media screen and (max-width:767px){} */
+
+@media all and (min-width: 1024px) {
+  .App {
+    text-align: center;
+    width: 50%;
+    padding-left: 25%;
+    padding-right: 25%;
+    overflow: visible;
+    /* height: 90vh; */
+
+    padding-top: 100px;
+    /* background-color: rgb(250, 255, 238); */
+  }
+
+  .title {
+    font-size: 100px;
+    padding-bottom: 50px;
+    /* width: 730px; */
+    text-align: center;
+  }
+  .body {
+    display: inline-block;
+    text-align: center;
+  }
+  .PrivatePickersSlideTransition-root css-dhopo2 {
+    height: 240px;
+  }
+  .disable {
+    cursor: default !important;
+    opacity: 0.7 !important;
+    pointer-events: none;
+  }
+
+  .start_button {
+    display: inline-block;
+    color: aliceblue;
+    font-weight: bold;
+    background-color: cornflowerblue;
+    height: 40px;
+    line-height: 40px;
+    width: 100px;
+    border-radius: 20px;
+    margin-top: 32px;
+    cursor: pointer;
+    transition: all 0.3s ease-out 0.1s;
+  }
+
+  .start_button:hover {
+    box-shadow: 3px 3px 10px -6px rgba(0, 0, 0, 0.82);
+  }
+
+  .button {
+    cursor: pointer;
+  }
+
+  .insta_link_button {
+    position: relative;
+    transition: all 0.2s ease-out 0.1s;
+    cursor: pointer;
+  }
+  .insta_link_button:hover {
+  }
+
+  .insta_link_button:hover:before {
+    content: "팔로우하기";
+    /* color: rgb(229, 90, 227); */
+  }
+  .insta_link_button:hover span {
+    display: none;
+  }
+
+  .kakao_link_button {
+    position: relative;
+    transition: all 0.4s ease-out 0.1s;
+    cursor: pointer;
+  }
+
+  .kakao_link_button:hover {
+    content: "참여하기";
+    /* color: rgb(249, 211, 42); */
+  }
+  .kakao_link_button:hover span {
+    display: none;
+  }
+
+  .kakao_link_button:hover:before {
+    content: "참여하기";
+    /* color: rgb(249, 211, 42); */
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+
+    text-align: center;
+    height: 80px;
+  }
+
+  .contents_container {
+    padding-top: 16px;
+  }
+
+  .contents_title {
+    font-size: 26px;
+  }
+
+  .contents {
+    font-size: 20px;
+    padding: 16px;
+    padding-left: 60px;
+    padding-right: 60px;
+    margin: 8px;
+    border: 2px solid rgba(0, 0, 239, 0.211);
+    border-radius: 40px;
+    cursor: pointer;
+  }
+
+  .contents:hover {
+    border: 2px solid rgba(0, 0, 239, 0.574);
+    transition: all 0.4s ease-out 0.1s;
+  }
+  .contents_3 {
+    font-size: 20px;
+    padding: 16px;
+    margin: 8px;
+    padding-left: 60px;
+    padding-right: 60px;
+    border: 2px solid rgba(121, 197, 104, 0.601);
+    border-radius: 40px;
+    cursor: pointer;
+  }
+
+  .contents_3:hover {
+  }
+
+  /* ============================================================================================ */
+
+  .padding_bottom {
+    padding-bottom: 24px;
+  }
+
+  /* ============================================================================================ */
+}
