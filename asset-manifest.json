@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/saju-with-chatgpt/static/css/main.e78c7cd3.css",
-    "main.js": "/saju-with-chatgpt/static/js/main.3afa72fd.js",
-    "static/js/787.6a7d8588.chunk.js": "/saju-with-chatgpt/static/js/787.6a7d8588.chunk.js",
-    "index.html": "/saju-with-chatgpt/index.html",
-    "main.e78c7cd3.css.map": "/saju-with-chatgpt/static/css/main.e78c7cd3.css.map",
-    "main.3afa72fd.js.map": "/saju-with-chatgpt/static/js/main.3afa72fd.js.map",
-    "787.6a7d8588.chunk.js.map": "/saju-with-chatgpt/static/js/787.6a7d8588.chunk.js.map"
+    "main.css": "/mini-projects/static/css/main.e78c7cd3.css",
+    "main.js": "/mini-projects/static/js/main.b59669b3.js",
+    "static/js/787.6a7d8588.chunk.js": "/mini-projects/static/js/787.6a7d8588.chunk.js",
+    "index.html": "/mini-projects/index.html",
+    "main.e78c7cd3.css.map": "/mini-projects/static/css/main.e78c7cd3.css.map",
+    "main.b59669b3.js.map": "/mini-projects/static/js/main.b59669b3.js.map",
+    "787.6a7d8588.chunk.js.map": "/mini-projects/static/js/787.6a7d8588.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e78c7cd3.css",
-    "static/js/main.3afa72fd.js"
+    "static/js/main.b59669b3.js"
   ]
 }
