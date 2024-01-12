@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import _ from "lodash";
 
 import MainRouter from "./MainRouter";
-import { SajuPage, StampPage, MainPage } from "./pages";
+import { SajuPage, StampPage, MainPage, RemainDaysPage } from "./pages";
 
 import "./Web.css";
 import "./Mobile.css";
@@ -19,6 +19,7 @@ const App = () => {
           <Route path="/" />
           <Route path="/main" element={<MainPage />} />
           <Route path="/saju" element={<SajuPage />} />
+          <Route path="/remaining-days" element={<RemainDaysPage />} />
         </Routes>
       </BrowserRouter>
       {/* <SajuPage /> */}
