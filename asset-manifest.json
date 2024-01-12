@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/saju-with-chatgpt/static/css/main.e78c7cd3.css",
-    "main.js": "/saju-with-chatgpt/static/js/main.147158eb.js",
+    "main.js": "/saju-with-chatgpt/static/js/main.3afa72fd.js",
     "static/js/787.6a7d8588.chunk.js": "/saju-with-chatgpt/static/js/787.6a7d8588.chunk.js",
     "index.html": "/saju-with-chatgpt/index.html",
     "main.e78c7cd3.css.map": "/saju-with-chatgpt/static/css/main.e78c7cd3.css.map",
-    "main.147158eb.js.map": "/saju-with-chatgpt/static/js/main.147158eb.js.map",
+    "main.3afa72fd.js.map": "/saju-with-chatgpt/static/js/main.3afa72fd.js.map",
     "787.6a7d8588.chunk.js.map": "/saju-with-chatgpt/static/js/787.6a7d8588.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e78c7cd3.css",
-    "static/js/main.147158eb.js"
+    "static/js/main.3afa72fd.js"
   ]
 }
