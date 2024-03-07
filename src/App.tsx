@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Routes, Route, HashRouter } from "react-router-dom";
-
 import _ from "lodash";
 
 import MainRouter from "./MainRouter";
-import { SajuPage, StampPage, MainPage, RemainDaysPage } from "./pages";
+import ScrollToTop from "./libs/ScrollToTop";
 
 import "./Web.css";
 import "./Mobile.css";
@@ -14,15 +12,11 @@ const App = () => {
   return (
     <div className="App">
       <HashRouter>
-        {/* <ScrollTop /> */}
+        <ScrollToTop />
         <Routes>
-          <Route path="/" element={<RemainDaysPage />} />
-          <Route path="/stamp" element={<StampPage />} />
-          <Route path="/saju" element={<SajuPage />} />
-          <Route path="/remaining-days" element={<RemainDaysPage />} />
+          <Route path="/*" element={<MainRouter />} />
         </Routes>
       </HashRouter>
-      {/* <SajuPage /> */}
     </div>
   );
 };
