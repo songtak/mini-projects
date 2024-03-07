@@ -14,7 +14,7 @@ const RemainDaysPage = () => {
     },
     series: [
       {
-        name: "Access From",
+        name: "2024",
         type: "pie",
         radius: ["40%", "70%"],
         avoidLabelOverlap: false,
@@ -82,10 +82,9 @@ const RemainDaysPage = () => {
 
     // 남은 일수와 지난 일수를 계산합니다.
     const oneDayMillis = 24 * 60 * 60 * 1000; // 하루의 밀리초
-    const elapsedDays = Math.floor(elapsedMillis / oneDayMillis);
-    const remainingDays = Math.ceil(
-      (endOfYear.getTime() - now.getTime()) / oneDayMillis
-    );
+    const elapsedDays = Math.floor(elapsedMillis / oneDayMillis) + 1;
+    const remainingDays =
+      Math.ceil((endOfYear.getTime() - now.getTime()) / oneDayMillis) - 1;
 
     return {
       progressPercentage: `${progressPercentage}%`,

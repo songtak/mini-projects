@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 
 import _ from "lodash";
 
@@ -13,17 +13,15 @@ import "./Mobile.css";
 const App = () => {
   return (
     <div className="App">
-      <Router>
+      <HashRouter>
         {/* <ScrollTop /> */}
         <Routes>
-          {/* <Route path="/*" element={<MainRouter />} /> */}
-          {/* <Route path="/*" element={<StampPage />} /> */}
-          {/* <Route path="/" /> */}
-          <Route path="/main" element={<MainPage />} />
+          <Route path="/" element={<RemainDaysPage />} />
+          <Route path="/stamp" element={<StampPage />} />
           <Route path="/saju" element={<SajuPage />} />
           <Route path="/remaining-days" element={<RemainDaysPage />} />
         </Routes>
-      </Router>
+      </HashRouter>
       {/* <SajuPage /> */}
     </div>
   );
