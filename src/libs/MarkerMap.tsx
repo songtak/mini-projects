@@ -127,9 +127,8 @@ const MarkerMap = () => {
           if (isMobile()) {
             setClickName(location.name);
             if (clickName === location.name) {
-              const openNewWindow = window.open("about:blank");
               /** @ts-ignore */
-              openNewWindow.location.href = `https://map.naver.com/p/search/${location.name}`;
+              window.location.href = `https://map.naver.com/p/search/${location.name}`;
             } else {
               handleClickMarker(marker, map, location);
             }
