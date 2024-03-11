@@ -42,7 +42,7 @@ const MarkerMap = () => {
     close?: any
   ) => {
     // 여기에 원하는 로직을 추가하세요.
-    setClickName(location.name);
+
     if (infoWindow) {
       infoWindow.close();
     }
@@ -66,6 +66,10 @@ const MarkerMap = () => {
       location.name
     }</div>
         </div>`;
+
+    console.log("clickName", clickName);
+    console.log("location.name", location.name);
+    console.log("clickName === location.name", clickName === location.name);
 
     if (isMobile() && clickName === location.name) {
       const openNewWindow = window.open("about:blank");
@@ -121,6 +125,7 @@ const MarkerMap = () => {
         // 마커 클릭 리스너
         naver.maps.Event.addListener(marker, "click", () => {
           if (isMobile()) {
+            setClickName(location.name);
             handleClickMarker(marker, map, location);
           } else {
             // handleClickUrl(`https://map.naver.com/p/search/${}`);
@@ -133,6 +138,7 @@ const MarkerMap = () => {
         naver.maps.Event.addListener(marker, "mouseover", () => {
           handleClickMarker(marker, map, location);
           //   handleHoverMarker(location);
+          setClickName(location.name);
         });
 
         // 마커 호버 중지 리스너를 추가합니다. (선택적)
