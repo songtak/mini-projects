@@ -67,9 +67,9 @@ const MarkerMap = () => {
     }</div>
         </div>`;
 
-    console.log("clickName", clickName);
-    console.log("location.name", location.name);
-    console.log("clickName === location.name", clickName === location.name);
+    // console.log("clickName", clickName);
+    // console.log("location.name", location.name);
+    // console.log("clickName === location.name", clickName === location.name);
 
     if (isMobile() && clickName === location.name) {
       const openNewWindow = window.open("about:blank");
