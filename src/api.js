@@ -8,6 +8,8 @@ const OPENAI_ENDPOINT = "https://api.openai.com/v1/images/generations";
 // const OPENAI_ENDPOINT =
 //   "https://api.openai.com/v1/models/gpt-3.5-turbo-instruct";
 
+const GARDEN_ENDPOINT = "http://api.nongsaro.go.kr/service/garden";
+
 export const getResponseFromGPT = async (prompt) => {
   var openApiToken;
 
@@ -46,7 +48,35 @@ export const getResponseFromGPT = async (prompt) => {
     }
   );
 
-  // return response.data.choices[0].text.trim();
-  // return response.data.choices[0].message.content;
   return response.data.data[0].url;
+};
+
+export const getApi = async () => {
+  const api_key = "202403087MHPOVCUQJZBZ7SFUTBKG";
+
+  const response = await axios.get("/api" + `/gardenList?apiKey=${api_key}`);
+
+  return response;
+};
+
+export const getTurtles = async () => {
+  const serviceKey =
+    "cFaqNVCtLPS%2Fu3KesQfPTGPRQq6V8KXn9kQxWQKOFRoRiWPQTg1XJAlauZSzoiSZm94WWG2t9wGH53GiATyGKA%3D%3D";
+
+  const response = await axios.get(
+    "/getSeaTurtleMeta" + `?serviceKey=${serviceKey}`
+  );
+
+  return response;
+};
+export const getBeachWeathers = async () => {
+  const serviceKey =
+    "cFaqNVCtLPS%2Fu3KesQfPTGPRQq6V8KXn9kQxWQKOFRoRiWPQTg1XJAlauZSzoiSZm94WWG2t9wGH53GiATyGKA%3D%3D";
+
+  const response = await axios.get(
+    "/getUltraSrtFcstBeach" +
+      `?serviceKey=${serviceKey}&base_date=20240311&base_time=1230&beach_num=1&dataType=JSON`
+  );
+
+  return response;
 };

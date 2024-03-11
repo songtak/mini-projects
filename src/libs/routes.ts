@@ -22,4 +22,19 @@ export const MainRoutes: RoutePropInterface[] = [
     path: "/remain-days",
     element: Pages.RemainDaysPage,
   },
+  {
+    title: "h o m e - g a r d e n",
+    path: "/home-garden",
+    element: Pages.HomeGardenPage,
+  },
+  {
+    title: "t u r t l e",
+    path: "/turtle",
+    element: Pages.GreenTurtlePage,
+  },
+  {
+    title: "b e a c h",
+    path: "/beach-list",
+    element: Pages.BeachListPage,
+  },
 ];
