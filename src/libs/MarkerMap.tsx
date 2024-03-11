@@ -71,11 +71,11 @@ const MarkerMap = () => {
     // console.log("location.name", location.name);
     // console.log("clickName === location.name", clickName === location.name);
 
-    if (isMobile() && clickName === location.name) {
-      const openNewWindow = window.open("about:blank");
-      /** @ts-ignore */
-      openNewWindow.location.href = `https://map.naver.com/p/search/${location.name}`;
-    }
+    // if (isMobile() && clickName === location.name) {
+    //   const openNewWindow = window.open("about:blank");
+    //   /** @ts-ignore */
+    //   openNewWindow.location.href = `https://map.naver.com/p/search/${location.name}`;
+    // }
 
     const clickedInfoWindow = new naver.maps.InfoWindow({
       content: content,
@@ -126,7 +126,13 @@ const MarkerMap = () => {
         naver.maps.Event.addListener(marker, "click", () => {
           if (isMobile()) {
             setClickName(location.name);
-            handleClickMarker(marker, map, location);
+            if (clickName === location.name) {
+              const openNewWindow = window.open("about:blank");
+              /** @ts-ignore */
+              openNewWindow.location.href = `https://map.naver.com/p/search/${location.name}`;
+            } else {
+              handleClickMarker(marker, map, location);
+            }
           } else {
             // handleClickUrl(`https://map.naver.com/p/search/${}`);
             const openNewWindow = window.open("about:blank");
