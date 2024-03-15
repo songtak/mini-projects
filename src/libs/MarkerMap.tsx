@@ -48,8 +48,6 @@ const MarkerMap = () => {
     // }
   };
 
-  console.log("waveHeight", waveHeight);
-
   /**
    * @description 바다 정보 취득
    */
