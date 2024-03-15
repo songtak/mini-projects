@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import CryptoJS from "crypto-js";
+import { useNavigate, useLocation } from "react-router-dom";
 // import ReactGA from "react-ga4";
 import dayjs from "dayjs";
 import _ from "lodash";
@@ -17,6 +17,8 @@ type Props = {
 };
 
 const MarkerMap = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const mapElement = useRef(null);
   /** @ts-ignore */
   const { naver } = window;
@@ -38,20 +40,11 @@ const MarkerMap = () => {
     );
   };
 
-  const handleClickUrl = (url: string) => {
-    // if (process.env.REACT_APP_PROD === "true") {
-    //   ReactGA.event({
-    //     category: "Event",
-    //     action: "상세 url 클릭",
-    //     label: url,
-    //   });
-    // }
-  };
-
   /**
    * @description 바다 정보 취득
    */
   const getBeachInfos = async (beachId: number) => {
+    /** 단기 정보 */
     const beachInfoData = await getVilageFcstBeach(beachId);
     setBeachWeatherInfo(beachInfoData);
 
@@ -59,12 +52,16 @@ const MarkerMap = () => {
     const waveHeightData = await getWhBuoyBeach(beachId);
     !_.isEmpty(waveHeightData[0]) && setWaveHeight(waveHeightData[0]);
 
+    /** 조석조회 */
     dayjs().format("MM") === "06" && getTideInfoBeach(beachId);
     dayjs().format("MM") === "07" && getTideInfoBeach(beachId);
     dayjs().format("MM") === "08" && getTideInfoBeach(beachId);
+
+    /** 일출일몰조회 */
     dayjs().format("MM") === "06" && getSunInfoBeach(beachId);
     dayjs().format("MM") === "07" && getSunInfoBeach(beachId);
     dayjs().format("MM") === "08" && getSunInfoBeach(beachId);
+
     /** 수온 정보 */
     const waterTempData = await getTwBuoyBeach(beachId);
     !_.isEmpty(waterTempData[0]) && setWaterTemp(waterTempData[0]);
@@ -82,32 +79,12 @@ const MarkerMap = () => {
       infoWindow.close();
     }
 
-    // ${isMobile() && <a href={`${location.url}`}>비로가기</a>}
-    // <div>${isMobile() && "<span>바로가기</span>"}</div>
-
-    // const ddddd = getBeachWeathers(location.id);
-    // <div>${
-    //   isMobile() && !_.isUndefined(location.url)
-    //     ? `<a style="z-index: 999999999;" href=${location.url}>바로가기</a>`
-    //     : ""
-    // }</div>
-
     var content = `<div style="margin:16px;min-width:150px;" ><div style="margin-bottom:8px">${
       !_.isUndefined(location.menu) ? location.category : ""
     }</div><div style="font-size:14px;font-weight:700;margin-bottom:12px">${
       location.name
     }</div>
         </div>`;
-
-    // console.log("hoverName", hoverName);
-    // console.log("location.name", location.name);
-    // console.log("hoverName === location.name", hoverName === location.name);
-
-    // if (isMobile() && hoverName === location.name) {
-    //   const openNewWindow = window.open("about:blank");
-    //   /** @ts-ignore */
-    //   openNewWindow.location.href = `https://map.naver.com/p/search/${location.name}`;
-    // }
 
     const clickedInfoWindow = new naver.maps.InfoWindow({
       content: content,
@@ -159,35 +136,32 @@ const MarkerMap = () => {
           setHoverName(location.name);
 
           if (isMobile()) {
-            if (hoverName === location.name) {
-              /** @ts-ignore */
-              window.location.href = `https://map.naver.com/p/search/${location.name}`;
-            } else {
-              handleClickMarker(marker, map, location);
-            }
+            handleClickMarker(marker, map, location);
+            setClickName(location.name);
+            getBeachInfos(location.id);
           } else {
             setClickName(location.name);
             getBeachInfos(location.id);
-            // const openNewWindow = window.open("about:blank");
-            // /** @ts-ignore */
-            // openNewWindow.location.href = `https://map.naver.com/p/search/${location.name}`;
           }
         });
         // 마커 호버 리스너
         naver.maps.Event.addListener(marker, "mouseover", () => {
           handleClickMarker(marker, map, location);
-          //   handleHoverMarker(location);
           setHoverName(location.name);
         });
 
         // 마커 호버 중지 리스너를 추가합니다. (선택적)
         naver.maps.Event.addListener(marker, "mouseout", () => {
-          //   console.log("Marker hover ended!", location);
           handleClickMarker(marker, map, location, true);
         });
       });
     }
   }, [mapElement, locations]);
+
+  useEffect(() => {
+    // window.location.href =
+    //   "https://songtak.github.io/mini-projects/#/beach-list";
+  }, []);
 
   return (
     <>
@@ -355,7 +329,7 @@ const MarkerMap = () => {
     //   name: "현재 위치",
     //   location: "37.5345698, 127.0004869",
     // });
-    console.log("위치 확인 불가");
+    // console.log("위치 확인 불가");
   }
 };
 
