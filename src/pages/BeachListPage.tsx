@@ -4,6 +4,7 @@ import MarkerMap from "../libs/MarkerMap";
 const BeachListPage = () => {
   return (
     <div>
+      <div>내가 보려고 만든</div>
       <div style={{ marginBottom: "24px", fontWeight: 700, fontSize: 28 }}>
         전국~ 해수욕장 정보
       </div>
