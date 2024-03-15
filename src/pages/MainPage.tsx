@@ -11,8 +11,8 @@ const MainPage = () => {
       <div className="mt30">
         {/* <div>목록</div> */}
         <div className="button-list">
-          {MainRoutes.map((item: RoutePropInterface) => (
-            <div>
+          {MainRoutes.map((item: RoutePropInterface, i: number) => (
+            <div key={i}>
               <button
                 className="original-button mt10"
                 onClick={() => {

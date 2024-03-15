@@ -1,5 +1,11 @@
 import axios from "axios";
 import CryptoJS from "crypto-js";
+import dayjs from "dayjs";
+
+import {
+  getNearBaseTimeInBeachInfoTimes,
+  setVilageFcstBeach,
+} from "./libs/helper";
 
 // const OPENAI_ENDPOINT = "https://api.openai.com/v1/engines/davinci/completions";
 // const OPENAI_ENDPOINT = "https://api.openai.com/v1/completions";
@@ -9,6 +15,9 @@ const OPENAI_ENDPOINT = "https://api.openai.com/v1/images/generations";
 //   "https://api.openai.com/v1/models/gpt-3.5-turbo-instruct";
 
 const GARDEN_ENDPOINT = "http://api.nongsaro.go.kr/service/garden";
+
+const WEATHER_ENDPOINT = "http://apis.data.go.kr/1360000/BeachInfoservice/";
+const naver_map_service_key = process.env.REACT_APP_NAVER_MAP_SERVICE_KEY;
 
 export const getResponseFromGPT = async (prompt) => {
   var openApiToken;
@@ -54,7 +63,7 @@ export const getResponseFromGPT = async (prompt) => {
 export const getApi = async () => {
   const api_key = "202403087MHPOVCUQJZBZ7SFUTBKG";
 
-  const response = await axios.get("/api" + `/gardenList?apiKey=${api_key}`);
+  const response = await axios.get("/gardenList" + `/?apiKey=${api_key}`);
 
   return response;
 };
@@ -69,14 +78,86 @@ export const getTurtles = async () => {
 
   return response;
 };
-export const getBeachWeathers = async () => {
-  const serviceKey =
-    "cFaqNVCtLPS%2Fu3KesQfPTGPRQq6V8KXn9kQxWQKOFRoRiWPQTg1XJAlauZSzoiSZm94WWG2t9wGH53GiATyGKA%3D%3D";
 
+/** ===[ 기상청_전국 해수욕장 날씨 조회서비스 ]================================================================= */
+
+/**
+ * @description 해수욕장 단기예보조회
+ * @param {*} beachId
+ * @returns
+ */
+export const getVilageFcstBeach = async (beachId) => {
+  const base_time = getNearBaseTimeInBeachInfoTimes(
+    Number(dayjs().format("HHmm"))
+  );
   const response = await axios.get(
-    "/getUltraSrtFcstBeach" +
-      `?serviceKey=${serviceKey}&base_date=20240311&base_time=1230&beach_num=1&dataType=JSON`
+    WEATHER_ENDPOINT +
+      `getVilageFcstBeach?serviceKey=${naver_map_service_key}&base_date=${dayjs().format(
+        "YYYYMMDD"
+      )}&base_time=${base_time}&beach_num=${beachId}&dataType=JSON`
+  );
+
+  return setVilageFcstBeach(response.data.response.body?.items?.item);
+
+  // return response.data.response.body?.items?.item;
+};
+/**
+ * @description 해수욕장 파고조회
+ * @param {*} beachId
+ * @returns
+ */
+export const getWhBuoyBeach = async (beachId) => {
+  const response = await axios.get(
+    WEATHER_ENDPOINT +
+      `getWhBuoyBeach?serviceKey=${naver_map_service_key}&searchTime=${dayjs().format(
+        "YYYYMMDDHHmm"
+      )}&beach_num=${beachId}&dataType=JSON`
+  );
+
+  return response.data.response.body?.items?.item;
+};
+/**
+ * @description 해수욕장 조석조회 (6~8월에만 제공)
+ * @param {*} beachId
+ * @returns
+ */
+export const getTideInfoBeach = async (beachId) => {
+  const response = await axios.get(
+    WEATHER_ENDPOINT +
+      `getTideInfoBeach?serviceKey=${naver_map_service_key}&base_date=${dayjs().format(
+        "YYYYMMDD"
+      )}&beach_num=${beachId}&dataType=JSON`
   );
 
   return response;
+};
+/**
+ * @description 해수욕장 일출일몰조회 (6~8월에만 제공)
+ * @param {*} beachId
+ * @returns
+ */
+export const getSunInfoBeach = async (beachId) => {
+  const response = await axios.get(
+    WEATHER_ENDPOINT +
+      `getSunInfoBeach?serviceKey=${naver_map_service_key}&base_date=${dayjs().format(
+        "YYYYMMDD"
+      )}&beach_num=${beachId}&dataType=JSON`
+  );
+
+  return response;
+};
+/**
+ * @description 해수욕장 수온조회
+ * @param {*} beachId
+ * @returns
+ */
+export const getTwBuoyBeach = async (beachId) => {
+  const response = await axios.get(
+    WEATHER_ENDPOINT +
+      `getTwBuoyBeach?serviceKey=${naver_map_service_key}&searchTime=${dayjs().format(
+        "YYYYMMDDHHmm"
+      )}&beach_num=${beachId}&dataType=JSON`
+  );
+
+  return response.data.response.body?.items?.item;
 };
