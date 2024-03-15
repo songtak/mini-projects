@@ -159,8 +159,8 @@ const MarkerMap = () => {
   }, [mapElement, locations]);
 
   useEffect(() => {
-    // window.location.href =
-    //   "https://songtak.github.io/mini-projects/#/beach-list";
+    window.location.href =
+      "https://songtak.github.io/mini-projects/#/beach-list";
   }, []);
 
   return (
