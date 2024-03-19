@@ -1,5 +1,16 @@
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
+// module.exports = function (app) {
+//   app.use(
+//     "/gardenList",
+//     createProxyMiddleware({
+//       target: "http://api.nongsaro.go.kr/service/garden",
+
+//       changeOrigin: true,
+//     })
+//   );
+// };
+
 module.exports = function (app) {
   app.use(
     createProxyMiddleware("/getSeaTurtleMeta", {
@@ -8,8 +19,10 @@ module.exports = function (app) {
     })
   );
 };
-// src/setupProxy.js
+
+// src / setupProxy.js;
 module.exports = function (app) {
+  console.log("createProxyMiddleware");
   app.use(
     createProxyMiddleware("/gardenList", {
       target: "http://api.nongsaro.go.kr/service/garden", // 비즈니스 서버 URL 설정

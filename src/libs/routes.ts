@@ -35,6 +35,12 @@ export const MainRoutes: RoutePropInterface[] = [
   {
     title: "b e a c h",
     path: "/beach-list",
+    isHide: true,
     element: Pages.BeachListPage,
+  },
+  {
+    title: "b e a c h",
+    path: "/beach",
+    element: Pages.BeachMainPage,
   },
 ];

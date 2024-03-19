@@ -17,7 +17,10 @@ const OPENAI_ENDPOINT = "https://api.openai.com/v1/images/generations";
 const GARDEN_ENDPOINT = "http://api.nongsaro.go.kr/service/garden";
 
 const WEATHER_ENDPOINT = "http://apis.data.go.kr/1360000/BeachInfoservice/";
+
 const naver_map_service_key = process.env.REACT_APP_NAVER_MAP_SERVICE_KEY;
+const open_data_service_key = process.env.REACT_APP_OPEN_DATA_SERVICE_KEY;
+const ocean_service_key = process.env.REACT_APP_OCEAN_SERVICE_KEY;
 
 export const getResponseFromGPT = async (prompt) => {
   var openApiToken;
@@ -60,21 +63,35 @@ export const getResponseFromGPT = async (prompt) => {
   return response.data.data[0].url;
 };
 
-export const getApi = async () => {
+export const gardenList = async () => {
   const api_key = "202403087MHPOVCUQJZBZ7SFUTBKG";
-
-  const response = await axios.get("/gardenList" + `/?apiKey=${api_key}`);
-
+  console.log("=-=-=-=-=-=-=-gardenListttt");
+  // const response = await axios.get(
+  //   "http://api.nongsaro.go.kr/service/garden/gardenList" + `?apiKey=${api_key}`
+  // );
+  const response = await axios({
+    method: "get",
+    url: `http://api.nongsaro.go.kr/service/garden/gardenList?apiKey=${api_key}`, // url을 변경해서 테스트해주세요
+    // httpAgent: new http.Agent({ rejectUnauthorized: false }),
+  }).then((res) => {
+    console.log(res);
+  });
+  // const response = await axios.get("/gardenList" + `?apiKey=${api_key}`);
   return response;
+};
+
+export const gardenList2 = async () => {
+  // const api_key = "202403087MHPOVCUQJZBZ7SFUTBKG";
+  // console.log("=-=-=-=-=-=-=-gardenList222222");
+  // const response = await axios.get("/gardenList" + `?apiKey=${api_key}`);
+  // return response;
 };
 
 export const getTurtles = async () => {
   const serviceKey =
     "cFaqNVCtLPS%2Fu3KesQfPTGPRQq6V8KXn9kQxWQKOFRoRiWPQTg1XJAlauZSzoiSZm94WWG2t9wGH53GiATyGKA%3D%3D";
 
-  const response = await axios.get(
-    "/getSeaTurtleMeta" + `?serviceKey=${serviceKey}`
-  );
+  const response = await axios.get("/getSeaTurtleMeta");
 
   return response;
 };
@@ -92,7 +109,7 @@ export const getVilageFcstBeach = async (beachId) => {
   );
   const response = await axios.get(
     WEATHER_ENDPOINT +
-      `getVilageFcstBeach?serviceKey=${naver_map_service_key}&base_date=${dayjs().format(
+      `getVilageFcstBeach?serviceKey=${open_data_service_key}&base_date=${dayjs().format(
         "YYYYMMDD"
       )}&base_time=${base_time}&beach_num=${beachId}&dataType=JSON`
   );
@@ -109,7 +126,7 @@ export const getVilageFcstBeach = async (beachId) => {
 export const getWhBuoyBeach = async (beachId) => {
   const response = await axios.get(
     WEATHER_ENDPOINT +
-      `getWhBuoyBeach?serviceKey=${naver_map_service_key}&searchTime=${dayjs().format(
+      `getWhBuoyBeach?serviceKey=${open_data_service_key}&searchTime=${dayjs().format(
         "YYYYMMDDHHmm"
       )}&beach_num=${beachId}&dataType=JSON`
   );
@@ -124,7 +141,7 @@ export const getWhBuoyBeach = async (beachId) => {
 export const getTideInfoBeach = async (beachId) => {
   const response = await axios.get(
     WEATHER_ENDPOINT +
-      `getTideInfoBeach?serviceKey=${naver_map_service_key}&base_date=${dayjs().format(
+      `getTideInfoBeach?serviceKey=${open_data_service_key}&base_date=${dayjs().format(
         "YYYYMMDD"
       )}&beach_num=${beachId}&dataType=JSON`
   );
@@ -139,7 +156,7 @@ export const getTideInfoBeach = async (beachId) => {
 export const getSunInfoBeach = async (beachId) => {
   const response = await axios.get(
     WEATHER_ENDPOINT +
-      `getSunInfoBeach?serviceKey=${naver_map_service_key}&base_date=${dayjs().format(
+      `getSunInfoBeach?serviceKey=${open_data_service_key}&base_date=${dayjs().format(
         "YYYYMMDD"
       )}&beach_num=${beachId}&dataType=JSON`
   );
@@ -154,10 +171,24 @@ export const getSunInfoBeach = async (beachId) => {
 export const getTwBuoyBeach = async (beachId) => {
   const response = await axios.get(
     WEATHER_ENDPOINT +
-      `getTwBuoyBeach?serviceKey=${naver_map_service_key}&searchTime=${dayjs().format(
+      `getTwBuoyBeach?serviceKey=${open_data_service_key}&searchTime=${dayjs().format(
         "YYYYMMDDHHmm"
       )}&beach_num=${beachId}&dataType=JSON`
   );
 
   return response.data.response.body?.items?.item;
+};
+/**
+ * @description 해수욕장 정보조회
+ * @param {*} beachId
+ * @returns
+ */
+export const getBeachInfoList = async (city) => {
+  const response = await axios.get(
+    "http://apis.data.go.kr/1192000/service/OceansBeachInfoService1/" +
+      `getOceansBeachInfo1?ServiceKey=${naver_map_service_key}&SIDO_NM=${city}&numOfRows=100&resultType=JSON`
+  );
+
+  console.log("response", response.data.getOceansBeachInfo.item);
+  return response;
 };

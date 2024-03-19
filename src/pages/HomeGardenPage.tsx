@@ -1,10 +1,12 @@
 import React from "react";
-import { getApi } from "../api";
+import { gardenList, gardenList2 } from "../api";
 
 const HomeGardenPage = () => {
-  const ddd = getApi();
+  const ddd = gardenList();
+  const ddd2 = gardenList2();
 
   console.log("ddd", ddd);
+  console.log("ddd2", ddd2);
 
   return <div></div>;
 };

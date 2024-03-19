@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import MarkerMap from "../libs/MarkerMap";
+import { beachList } from "../assets/beachList";
 
 const BeachListPage = () => {
   return (
@@ -9,6 +10,9 @@ const BeachListPage = () => {
         전국~ 해수욕장 정보
       </div>
       <MarkerMap />
+      <div style={{ marginTop: 44, color: "gray", fontSize: 14 }}>
+        정보 : 기상청 제공
+      </div>
     </div>
   );
 };

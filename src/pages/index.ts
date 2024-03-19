@@ -5,6 +5,7 @@ import RemainDaysPage from "./RemainDaysPage";
 import ProjectListPage from "./ProjectListPage";
 import HomeGardenPage from "./HomeGardenPage";
 import GreenTurtlePage from "./GreenTurtlePage";
+import BeachMainPage from "./BeachMainPage";
 import BeachListPage from "./BeachListPage";
 
 export {
@@ -15,5 +16,6 @@ export {
   ProjectListPage,
   HomeGardenPage,
   GreenTurtlePage,
+  BeachMainPage,
   BeachListPage,
 };

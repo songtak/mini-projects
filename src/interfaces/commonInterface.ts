@@ -2,6 +2,7 @@
 export interface RoutePropInterface {
   path: string;
   title: string;
+  isHide?: boolean;
   element: (match: any) => JSX.Element;
 }
 

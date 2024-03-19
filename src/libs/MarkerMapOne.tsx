@@ -16,7 +16,7 @@ type Props = {
   beachId?: number;
 };
 
-const MarkerMap = () => {
+const MarkerMapOne = ({ selectedBeach }: any) => {
   const navigate = useNavigate();
   const location = useLocation();
   const mapElement = useRef(null);
@@ -32,13 +32,15 @@ const MarkerMap = () => {
   const [waterTemp, setWaterTemp] = useState<any>();
 
   /** 해수욕장 목록 */
-  const locations = beachList;
+  // const locations = beachList;
 
   const isMobile = () => {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent
     );
   };
+
+  console.log("selectedBeach", selectedBeach);
 
   /**
    * @description 바다 정보 취득
@@ -114,49 +116,68 @@ const MarkerMap = () => {
     }
     if (!mapElement.current || !naver) return;
 
-    if (locations.length > 0) {
-      const mapOptions = {
-        /** ts-ignore */
-        center: new naver.maps.LatLng(locations[0]?.lat, locations[0].lng),
-        zoom: 7,
-        zoomControl: true,
-      };
+    getBeachInfos(selectedBeach.id);
 
-      const map = new naver.maps.Map(mapElement.current, mapOptions);
+    const mapOptions = {
+      /** ts-ignore */
+      center: new naver.maps.LatLng(selectedBeach.lat, selectedBeach.lng),
+      zoom: 7,
+      zoomControl: true,
+    };
 
-      // 각 위치에 대한 마커를 추가합니다.
-      locations.forEach((location: any) => {
-        const marker = new naver.maps.Marker({
-          position: new naver.maps.LatLng(location.lat, location.lng),
-          map,
-        });
+    const map = new naver.maps.Map(mapElement.current, mapOptions);
 
-        // 마커 클릭 리스너
-        naver.maps.Event.addListener(marker, "click", () => {
-          setHoverName(location.name);
+    const marker = new naver.maps.Marker({
+      position: new naver.maps.LatLng(selectedBeach.lat, selectedBeach.lng),
+      map,
+    });
 
-          if (isMobile()) {
-            handleClickMarker(marker, map, location);
-            setClickName(location.name);
-            getBeachInfos(location.id);
-          } else {
-            setClickName(location.name);
-            getBeachInfos(location.id);
-          }
-        });
-        // 마커 호버 리스너
-        naver.maps.Event.addListener(marker, "mouseover", () => {
-          handleClickMarker(marker, map, location);
-          setHoverName(location.name);
-        });
+    // 마커 클릭 리스너
+    naver.maps.Event.addListener(marker, "click", () => {
+      setHoverName(selectedBeach.name);
 
-        // 마커 호버 중지 리스너를 추가합니다. (선택적)
-        naver.maps.Event.addListener(marker, "mouseout", () => {
-          handleClickMarker(marker, map, location, true);
-        });
-      });
-    }
-  }, [mapElement, locations]);
+      if (isMobile()) {
+        handleClickMarker(marker, map, location);
+        setClickName(selectedBeach.name);
+        // getBeachInfos(selectedBeach.id);
+      } else {
+        setClickName(selectedBeach.name);
+        // getBeachInfos(selectedBeach.id);
+      }
+    });
+
+    // 각 위치에 대한 마커를 추가합니다.
+    // locations.forEach((location: any) => {
+    //   const marker = new naver.maps.Marker({
+    //     position: new naver.maps.LatLng(location.lat, location.lng),
+    //     map,
+    //   });
+
+    //   // 마커 클릭 리스너
+    //   naver.maps.Event.addListener(marker, "click", () => {
+    //     setHoverName(location.name);
+
+    //     if (isMobile()) {
+    //       handleClickMarker(marker, map, location);
+    //       setClickName(location.name);
+    //       getBeachInfos(location.id);
+    //     } else {
+    //       setClickName(location.name);
+    //       getBeachInfos(location.id);
+    //     }
+    //   });
+    //   // 마커 호버 리스너
+    //   naver.maps.Event.addListener(marker, "mouseover", () => {
+    //     handleClickMarker(marker, map, location);
+    //     setHoverName(location.name);
+    //   });
+
+    //   // 마커 호버 중지 리스너를 추가합니다. (선택적)
+    //   naver.maps.Event.addListener(marker, "mouseout", () => {
+    //     handleClickMarker(marker, map, location, true);
+    //   });
+    // });
+  }, [mapElement, selectedBeach]);
 
   // useEffect(() => {
   //   window.location.href =
@@ -180,8 +201,8 @@ const MarkerMap = () => {
           }}
         >
           {!_.isEmpty(beachWeatherInfo) && (
-            <a href={`https://map.naver.com/p/search/${clickName}`}>
-              {clickName}
+            <a href={`https://map.naver.com/p/search/${selectedBeach.name}`}>
+              {selectedBeach.name}
             </a>
           )}
         </div>
@@ -332,4 +353,4 @@ const MarkerMap = () => {
   }
 };
 
-export default MarkerMap;
+export default MarkerMapOne;

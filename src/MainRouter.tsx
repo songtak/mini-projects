@@ -18,6 +18,7 @@ const MainRouter = () => {
       <div className="">
         <div style={{ marginTop: 30 }}></div>
         <div
+          style={{ cursor: "pointer" }}
           onClick={() => {
             window.location.href = "https://instagram.com/sn9tk";
           }}
