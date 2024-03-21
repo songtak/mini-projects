@@ -46,6 +46,15 @@ code {
 
 /** ================================================== **/
 
+.top-border {
+  border-top-width: 2px;
+  border-top-color: #f15152;
+  border-top-style: outset;
+  padding-top: 32px;
+}
+
+/** ================================================== **/
+
 input {
   background: white;
   color: rgb(7 2 18);

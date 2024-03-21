@@ -40,8 +40,6 @@ const MarkerMapOne = ({ selectedBeach }: any) => {
     );
   };
 
-  console.log("selectedBeach", selectedBeach);
-
   /**
    * @description 바다 정보 취득
    */

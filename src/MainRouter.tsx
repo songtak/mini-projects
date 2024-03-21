@@ -15,8 +15,8 @@ const MainRouter = () => {
           );
         })}
       </Routes>
-      <div className="">
-        <div style={{ marginTop: 30 }}></div>
+      <div className="" style={{ marginTop: 30, marginBottom: 24 }}>
+        {/* <div style={{ marginTop: 30 }}></div> */}
         <div
           style={{ cursor: "pointer" }}
           onClick={() => {
