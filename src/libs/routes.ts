@@ -5,8 +5,13 @@ export const MainRoutes: RoutePropInterface[] = [
   // {
   //   title: "m a i n",
   //   path: "/",
-  //   element: Pages.MainPage,
+  //   element: Pages.RemainDaysPage,
   // },
+  {
+    title: "m a i n",
+    path: "/",
+    element: Pages.MainPage,
+  },
   {
     title: "s a j u",
     path: "/saju",
@@ -42,5 +47,10 @@ export const MainRoutes: RoutePropInterface[] = [
     title: "b e a c h",
     path: "/beach",
     element: Pages.BeachMainPage,
+  },
+  {
+    title: "3 D",
+    path: "/three",
+    element: Pages.ThreeTestPage,
   },
 ];

@@ -2,12 +2,13 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import _ from "lodash";
 import { MainRoutes } from "./libs/routes";
 import { RoutePropInterface } from "./interfaces/commonInterface";
-import { MainPage } from "./pages";
+import { MainPage, RemainDaysPage } from "./pages";
 const MainRouter = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<MainPage />} />
+        {/* <Route path="/" element={<MainPage />} />
+        <Route path="/dd" element={<RemainDaysPage />} /> */}
         {MainRoutes.map((item: RoutePropInterface) => {
           const Element = item.element;
           return (

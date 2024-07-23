@@ -7,6 +7,7 @@ import HomeGardenPage from "./HomeGardenPage";
 import GreenTurtlePage from "./GreenTurtlePage";
 import BeachMainPage from "./BeachMainPage";
 import BeachListPage from "./BeachListPage";
+import ThreeTestPage from "./ThreeTestPage";
 
 export {
   MainPage,
@@ -18,4 +19,5 @@ export {
   GreenTurtlePage,
   BeachMainPage,
   BeachListPage,
+  ThreeTestPage,
 };

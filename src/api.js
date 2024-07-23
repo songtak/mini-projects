@@ -63,21 +63,45 @@ export const getResponseFromGPT = async (prompt) => {
   return response.data.data[0].url;
 };
 
+// export const gardenList = async () => {
+//   const api_key = "202403087MHPOVCUQJZBZ7SFUTBKG";
+//   // const response = await axios.get(
+//   //   "http://api.nongsaro.go.kr/service/garden/gardenList" + `?apiKey=${api_key}`
+//   // );
+//   const response = await axios({
+//     method: "get",
+//     url: `http://api.nongsaro.go.kr/service/garden/gardenList?apiKey=${api_key}`, // url을 변경해서 테스트해주세요
+//     // httpAgent: new http.Agent({ rejectUnauthorized: false }),
+//   }).then((res) => {
+//     console.log(res);
+//   });
+//   // const response = await axios.get("/gardenList" + `?apiKey=${api_key}`);
+//   return response;
+// };
+
 export const gardenList = async () => {
   const api_key = "202403087MHPOVCUQJZBZ7SFUTBKG";
-  console.log("=-=-=-=-=-=-=-gardenListttt");
-  // const response = await axios.get(
-  //   "http://api.nongsaro.go.kr/service/garden/gardenList" + `?apiKey=${api_key}`
-  // );
-  const response = await axios({
-    method: "get",
-    url: `http://api.nongsaro.go.kr/service/garden/gardenList?apiKey=${api_key}`, // url을 변경해서 테스트해주세요
-    // httpAgent: new http.Agent({ rejectUnauthorized: false }),
-  }).then((res) => {
-    console.log(res);
+  const url = `http://api.nongsaro.go.kr/service/garden/gardenList?apiKey=${api_key}`;
+
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", url, true);
+
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState === 4) {
+        // 요청이 완료되었을 때
+        if (xhr.status >= 200 && xhr.status < 300) {
+          // 성공적으로 응답을 받았을 때
+          resolve(JSON.parse(xhr.responseText));
+        } else {
+          reject(new Error("Request failed with status code " + xhr.status));
+        }
+      }
+    };
+
+    xhr.onerror = () => reject(new Error("Network error"));
+    xhr.send();
   });
-  // const response = await axios.get("/gardenList" + `?apiKey=${api_key}`);
-  return response;
 };
 
 export const gardenList2 = async () => {
