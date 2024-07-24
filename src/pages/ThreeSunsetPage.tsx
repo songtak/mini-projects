@@ -158,3 +158,11 @@ const ThreeSunsetPage = () => {
 };
 
 export default ThreeSunsetPage;
+
+// "https://songtak.github.io/mini-projects/typeface/LEDLIGHT_Regular.typeface.json",
+//  "https://songtak.github.io/mini-projects/typeface/HIGH_ON_FIRE_TRIAL.json",
+// "https://songtak.github.io/mini-projects/typeface/BlueScreenPersonalUse_Regular.json",
+// "https://songtak.github.io/mini-projects/typeface/Love_Glitch_Personal.json",
+// "https://songtak.github.io/mini-projects/typeface/PUNKBABE_Regular.json",
+// "https://songtak.github.io/mini-projects/typeface/Safe_Iodine_Regular.json",
+// "https://songtak.github.io/mini-projects/typeface/SIMPLICITY_SHADOW_PERSONAL.json",

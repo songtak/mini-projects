@@ -5,7 +5,7 @@ import { FontLoader, Font } from "three/examples/jsm/loaders/FontLoader";
 
 const ThreeTextPage = () => {
   const mountRef = useRef<HTMLDivElement>(null);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState("songtak");
   const [fontLoaded, setFontLoaded] = useState<Font | null>(null);
   const [scene, setScene] = useState<THREE.Scene | null>(null);
   const [renderer, setRenderer] = useState<THREE.WebGLRenderer | null>(null);
@@ -109,9 +109,7 @@ const ThreeTextPage = () => {
     geometry.computeBoundingBox();
     const xMid =
       -0.5 * (geometry.boundingBox!.max.x - geometry.boundingBox!.min.x);
-    const yMid =
-      -0.5 * (geometry.boundingBox!.max.y - geometry.boundingBox!.min.y);
-    geometry.translate(xMid, yMid, 0);
+    geometry.translate(xMid, 0, 0);
 
     // Clear previous text
     while (scene.children.length > 0) {
@@ -139,7 +137,7 @@ const ThreeTextPage = () => {
     shapes.forEach((shape) => {
       const points = shape.getPoints();
       const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
-      lineGeometry.translate(xMid, yMid, 0);
+      lineGeometry.translate(xMid, 0, 0);
 
       const lineMesh = new THREE.Line(lineGeometry, matDark);
       lineMesh.rotation.z = Math.PI / 2; // Rotate 90 degrees to the right
@@ -160,13 +158,6 @@ const ThreeTextPage = () => {
     }
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = event.target.value;
-    if (/^[a-zA-Z ]*$/.test(newValue)) {
-      setMessage(newValue);
-    }
-  };
-
   return (
     <div
       style={{
@@ -181,12 +172,11 @@ const ThreeTextPage = () => {
     >
       <form onSubmit={handleSubmit}>
         <input
-          placeholder="English only"
           maxLength={20}
           style={{ marginRight: "8px" }}
           type="text"
           value={message}
-          onChange={handleChange}
+          onChange={(e) => setMessage(e.target.value)}
         />
         <button
           style={{
@@ -207,6 +197,7 @@ const ThreeTextPage = () => {
       <div
         style={{
           position: "absolute",
+          // left: "0px",
           bottom: "36px",
           right: "24px",
         }}
