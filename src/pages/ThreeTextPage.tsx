@@ -33,7 +33,7 @@ const ThreeTextPage = () => {
       // Font Loader
       const loader = new FontLoader();
       loader.load(
-        "https://songtak.github.io/mini-projects/textures/LEDLIGHT_Regular.typeface.json",
+        "https://songtak.github.io/mini-projects/typeface/LEDLIGHT_Regular.typeface.json",
         (font: Font) => {
           setFontLoaded(font);
           renderText(font, message, scene);
