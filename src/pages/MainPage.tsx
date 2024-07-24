@@ -23,7 +23,7 @@ const MainPage = () => {
               </button>
             </div>
           ))}
-          <div>
+          {/* <div>
             <button
               className="original-button mt10"
               onClick={() => {
@@ -38,7 +38,7 @@ const MainPage = () => {
             >
               l u n c h - h u n c h
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

@@ -8,6 +8,8 @@ import GreenTurtlePage from "./GreenTurtlePage";
 import BeachMainPage from "./BeachMainPage";
 import BeachListPage from "./BeachListPage";
 import ThreeTestPage from "./ThreeTestPage";
+import ThreeSunsetPage from "./ThreeSunsetPage";
+import ThreeTextPage from "./ThreeTextPage";
 
 export {
   MainPage,
@@ -20,4 +22,6 @@ export {
   BeachMainPage,
   BeachListPage,
   ThreeTestPage,
+  ThreeSunsetPage,
+  ThreeTextPage,
 };
