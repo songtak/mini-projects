@@ -1,9 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { ParallaxBarrierEffect } from "three/examples/jsm/effects/ParallaxBarrierEffect";
-import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
-import { PMREMGenerator } from "three/src/extras/PMREMGenerator.js";
-// import HdrFile from "public/textures/";
 
 const ThreeTestPage = () => {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -70,6 +67,33 @@ const ThreeTestPage = () => {
       scene = new THREE.Scene();
       scene.background = new THREE.Color(0xffffff); // 배경색을 흰색으로 설정
 
+      // Load environment map for spheres
+      const loader = new THREE.CubeTextureLoader();
+      const texture = loader.load([
+        "textures/cube/px.png",
+        "textures/cube/nx.png",
+        "textures/cube/py.png",
+        "textures/cube/ny.png",
+        "textures/cube/pz.png",
+        "textures/cube/nz.png",
+      ]);
+
+      const geometry = new THREE.SphereGeometry(0.1, 32, 16);
+      const material = new THREE.MeshStandardMaterial({ envMap: texture }); // 입체 구에 배경 반사 설정
+
+      for (let i = 0; i < 500; i++) {
+        const mesh = new THREE.Mesh(geometry, material);
+
+        mesh.position.x = Math.random() * 10 - 5;
+        mesh.position.y = Math.random() * 10 - 5;
+        mesh.position.z = Math.random() * 10 - 5;
+
+        mesh.scale.x = mesh.scale.y = mesh.scale.z = Math.random() * 3 + 1;
+
+        scene.add(mesh);
+        spheres.push(mesh);
+      }
+
       renderer = new THREE.WebGLRenderer();
       renderer.setPixelRatio(window.devicePixelRatio);
       renderer.setSize(window.innerWidth, window.innerHeight);
@@ -80,40 +104,6 @@ const ThreeTestPage = () => {
 
       document.addEventListener("mousemove", onDocumentMouseMove);
       window.addEventListener("resize", onWindowResize);
-
-      const pmremGenerator = new PMREMGenerator(renderer);
-      pmremGenerator.compileEquirectangularShader();
-
-      new RGBELoader()
-        .setPath("/textures/") // HDRI 파일의 경로 설정
-        .load("syferfontein_1d_clear_puresky_4k.hdr", (texture) => {
-          const envMap = pmremGenerator.fromEquirectangular(texture).texture;
-          scene.background = envMap;
-          scene.environment = envMap;
-
-          texture.dispose();
-          pmremGenerator.dispose();
-
-          const geometry = new THREE.SphereGeometry(0.1, 32, 16);
-          const material = new THREE.MeshStandardMaterial({
-            metalness: 1.0,
-            roughness: 0.1,
-            envMap: envMap, // 환경 맵을 구체에 반사하도록 설정
-          });
-
-          for (let i = 0; i < 500; i++) {
-            const mesh = new THREE.Mesh(geometry, material);
-
-            mesh.position.x = Math.random() * 10 - 5;
-            mesh.position.y = Math.random() * 10 - 5;
-            mesh.position.z = Math.random() * 10 - 5;
-
-            mesh.scale.x = mesh.scale.y = mesh.scale.z = Math.random() * 3 + 1;
-
-            scene.add(mesh);
-            spheres.push(mesh);
-          }
-        });
 
       renderer.setAnimationLoop(animate);
     };
