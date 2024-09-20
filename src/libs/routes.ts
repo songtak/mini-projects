@@ -63,4 +63,14 @@ export const MainRoutes: RoutePropInterface[] = [
     path: "/text",
     element: Pages.ThreeTextPage,
   },
+  {
+    title: "m i n j i",
+    path: "/minji",
+    element: Pages.ThreeGalleryPage,
+  },
+  // {
+  //   title: "w o r k",
+  //   path: "/work",
+  //   element: Pages.ThreeWorkPage,
+  // },
 ];

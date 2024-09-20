@@ -10,6 +10,8 @@ import BeachListPage from "./BeachListPage";
 import ThreeTestPage from "./ThreeTestPage";
 import ThreeSunsetPage from "./ThreeSunsetPage";
 import ThreeTextPage from "./ThreeTextPage";
+import ThreeWorkPage from "./ThreeWorkPage";
+import ThreeGalleryPage from "./ThreeGalleryPage";
 
 export {
   MainPage,
@@ -24,4 +26,6 @@ export {
   ThreeTestPage,
   ThreeSunsetPage,
   ThreeTextPage,
+  ThreeWorkPage,
+  ThreeGalleryPage,
 };
