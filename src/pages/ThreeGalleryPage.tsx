@@ -29,8 +29,8 @@ const ThreeGalleryPage = () => {
       </mesh>
 
       {/* 전시된 작품들 */}
-      {/* <Artwork position={[-4, 0, 0]} imageUrl="path_to_image1.jpg" />
-      <Artwork position={[0, 0, 0]} imageUrl="path_to_image2.jpg" />
+      {/* <Artwork position={[-4, 0, 0]} imageUrl="KakaoTalk_Photo_2024-09-20-18-54-09 001.jpeg" /> */}
+      {/* <Artwork position={[0, 0, 0]} imageUrl="path_to_image2.jpg" />
       <Artwork position={[4, 0, 0]} imageUrl="path_to_image3.jpg" /> */}
     </Canvas>
   );
