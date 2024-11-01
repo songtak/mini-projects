@@ -17,11 +17,11 @@ export const MainRoutes: RoutePropInterface[] = [
   //   path: "/stamp",
   //   element: Pages.StampPage,
   // },
-  // {
-  //   title: "r e m a i n - d a y s",
-  //   path: "/remain-days",
-  //   element: Pages.RemainDaysPage,
-  // },
+  {
+    title: "r e m a i n - d a y s",
+    path: "/remain-days",
+    element: Pages.RemainDaysPage,
+  },
   // {
   //   title: "h o m e - g a r d e n",
   //   path: "/home-garden",
@@ -38,11 +38,11 @@ export const MainRoutes: RoutePropInterface[] = [
   //   isHide: true,
   //   element: Pages.BeachListPage,
   // },
-  // {
-  //   title: "b e a c h",
-  //   path: "/beach",
-  //   element: Pages.BeachMainPage,
-  // },
+  {
+    title: "b e a c h",
+    path: "/beach",
+    element: Pages.BeachMainPage,
+  },
   {
     title: "m a i n",
     path: "/",
